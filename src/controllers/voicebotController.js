@@ -20,20 +20,21 @@ module.exports = {
 
     async getSingleConfiguration(req, res) {
         try {
-        const config = await voicebotModel.getConfiguration();
+            const config = await VoiceBotModel.getConfiguration();
 
-        if (!config) {
-            return res.status(404).json({ message: 'Configuration not found.' });
+            if (!config) {
+                return res.status(404).json({ message: 'Configuration not found.' });
+            }
+
+            // ⚠️ Mascarar a API Key para exibir no frontend
+            if (config.openai_api_key) {
+                config.openai_api_key = '••••••' + config.openai_api_key.slice(-4);
+            }
+
+            res.status(200).json(config);
+        } catch (error) {
+            console.error('Error retrieving configuration:', error);
+            res.status(500).json({ message: 'Internal server error' });
         }
-
-        // ⚠️ Mascarar a API Key para exibir no frontend
-        if (config.openai_api_key) {
-            config.openai_api_key = '••••••' + config.openai_api_key.slice(-4);
-        }
-
-        res.status(200).json(config);
-    } catch (error) {
-        console.error('Error retrieving configuration:', error);
-        res.status(500).json({ message: 'Internal server error' });
     }
-}
+};
