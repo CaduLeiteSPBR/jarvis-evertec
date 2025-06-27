@@ -1,9 +1,6 @@
--- Schema para o banco de dados VoiceBot Configuration
--- Arquivo: schema.sql
-
+-- Schema simplificado para uma única configuração persistente (sem unique_id)
 CREATE TABLE IF NOT EXISTS voicebot_configurations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    unique_id TEXT UNIQUE NOT NULL,
     openai_api_key TEXT NOT NULL,
     openai_model TEXT NOT NULL DEFAULT 'gpt-4-turbo',
     voice_type TEXT NOT NULL CHECK (voice_type IN ('Male', 'Female')),
@@ -17,7 +14,5 @@ CREATE TABLE IF NOT EXISTS voicebot_configurations (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Índices para melhor performance
-CREATE INDEX IF NOT EXISTS idx_unique_id ON voicebot_configurations(unique_id);
+-- Índices para performance
 CREATE INDEX IF NOT EXISTS idx_created_at ON voicebot_configurations(created_at);
-
