@@ -45,7 +45,7 @@ class App {
     });
 
     // ✅ Rotas da API
-    this.app.use('/api', voicebotRoutes);
+    this.app.use('/api/voicebot', voicebotRoutes);
 
     // ✅ Rota de health check
     this.app.get('/health', (req, res) => {
