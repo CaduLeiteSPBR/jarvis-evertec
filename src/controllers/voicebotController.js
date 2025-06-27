@@ -20,7 +20,7 @@ module.exports = {
 
     async getSingleConfiguration(req, res) {
         try {
-            const config = await VoiceBotModel.getConfiguration();
+            const config = await VoiceBotModel.getSingle();
 
             if (!config) {
                 return res.status(404).json({ message: 'Configuration not found.' });
