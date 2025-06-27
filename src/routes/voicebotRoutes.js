@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/voicebotController');
 
-router.post('/voicebot/configuration', controller.createOrUpdateConfiguration);
-router.get('/voicebot/configuration', controller.getSingleConfiguration);
+router.get('/configuration', controller.getSingleConfiguration);
+router.post('/configuration', controller.createOrUpdateConfiguration);
 
 module.exports = router;
