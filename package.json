@@ -1,0 +1,30 @@
+{
+  "name": "evertec-voicebot-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Evertec VoiceBot Configuration System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "evertec",
+    "voicebot",
+    "api",
+    "nodejs",
+    "sqlite"
+  ],
+  "author": "Evertec Development Team",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7",
+    "uuid": "^11.0.3"
+  }
+}
+

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: evertec-voicebot-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://your-netlify-site.netlify.app
+      - key: DATABASE_PATH
+        value: ./database/voicebot.db
+      - key: ENCRYPTION_KEY
+        generateValue: true
+        length: 32
+
