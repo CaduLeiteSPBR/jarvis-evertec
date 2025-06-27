@@ -14,8 +14,15 @@ class Database {
             // Criar diretório do banco se não existir
             const dbDir = path.dirname(this.dbPath);
             if (!fs.existsSync(dbDir)) {
-                fs.mkdirSync(dbDir, { recursive: true });
-            }
+    fs.mkdirSync(dbDir, { recursive: true });
+}
+
+// 🔥 Forçar a exclusão do banco antigo para recriar com o novo schema
+if (fs.existsSync(this.dbPath)) {
+    fs.unlinkSync(this.dbPath);
+    console.log('⚠️ Banco de dados antigo removido para recriação com novo schema');
+}
+
 
             this.db = new sqlite3.Database(this.dbPath, (err) => {
                 if (err) {
