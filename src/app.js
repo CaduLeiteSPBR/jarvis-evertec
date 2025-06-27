@@ -29,7 +29,7 @@ class App {
         this.app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
         // Servir arquivos estáticos do frontend
-        this.app.use(express.static(path.join(__dirname, '../../frontend')));
+        // this.app.use(express.static(path.join(__dirname, '../../frontend')));
 
         // Log de requisições
         this.app.use((req, res, next) => {
@@ -39,24 +39,25 @@ class App {
     }
 
     initializeRoutes() {
-        // Rota principal - servir o frontend
-        this.app.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname, '../../frontend/index.html'));
-        });
+    // ✅ Rota principal - redirecionar para status (ou pode remover totalmente)
+    this.app.get('/', (req, res) => {
+        res.redirect('/health');
+    });
 
-        // Rotas da API
-        this.app.use('/api', voicebotRoutes);
+    // ✅ Rotas da API
+    this.app.use('/api', voicebotRoutes);
 
-        // Rota de health check
-        this.app.get('/health', (req, res) => {
-            res.json({
-                status: 'OK',
-                timestamp: new Date().toISOString(),
-                service: 'Evertec VoiceBot Configuration API',
-                version: '1.0.0'
-            });
+    // ✅ Rota de health check
+    this.app.get('/health', (req, res) => {
+        res.json({
+            status: 'OK',
+            timestamp: new Date().toISOString(),
+            service: 'Evertec VoiceBot Configuration API',
+            version: '1.0.0'
         });
-    }
+    });
+}
+
 
     initializeErrorHandling() {
         // Middleware de tratamento de erros
