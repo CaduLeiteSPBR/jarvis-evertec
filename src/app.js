@@ -18,7 +18,7 @@ class App {
     initializeMiddlewares() {
         // CORS - permitir requisições de qualquer origem
         this.app.use(cors({
-            origin: '*',
+            origin: 'https://starlit-shortbread-a17a9c.netlify.app',
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
             credentials: false
